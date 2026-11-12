@@ -1,15 +1,20 @@
 # API de Download - Upload (Flask)
 
+
 API REST em Python com Flask, além de um formulário para armazenar e gerenciar dados pessoais vinculados a cada usuário. O projeto também conta com funcionalidades de Download e Upload de arquivos, utilizando SQLite como banco de dados.
 
+
 ## Tecnologias
+
 
 - Python 3
 - Flask
 - SQLite (módulo `sqlite3`)
 - Gunicorn (para execução em produção)
 
+
 ## Estrutura do projeto
+
 
 ```
 Teste_corrigido/
@@ -30,11 +35,15 @@ Teste_corrigido/
     └── upload_routes.py
 ```
 
+
 O projeto segue uma divisão em camadas: **routes → controllers → models → database**.
+
 
 ## Como executar
 
+
 1. Crie e ative um ambiente virtual (opcional, mas recomendado):
+
 
    ```bash
    python -m venv venv
@@ -42,61 +51,90 @@ O projeto segue uma divisão em camadas: **routes → controllers → models →
    venv\Scripts\activate         # Windows
    ```
 
+
 2. Instale as dependências:
+
 
    ```bash
    pip install -r requirements.txt
    ```
 
+
 3. Inicie a aplicação:
+
 
    ```bash
    python app.py
    ```
 
+
    A API ficará disponível em `http://127.0.0.1:5000`. As tabelas são criadas automaticamente na primeira execução.
+
 
    ```
 
+
 ## Endpoints
+
 
 ###  Upload (`/ uploads`)
 
+
 | Método | Rota              | Protegida | Descrição                          |
 |--------|-------------------|-----------|------------------------------------|
-| POST   | `/ uploads/ upload` | Não       | Cadastra um novo usuário           |
+| POST   | `/ uploads/ upload`| Não     | enviar dados para dispositivos     |
+
+
 
 
 ### Download (`/downloads`)
 
+
 | Método | Rota                | Protegida | Descrição                              |
 |--------|---------------------|-----------|----------------------------------------|
-| GET    | `/downloads/download`     | não      | Retorna o formulário do usuário logado |
+| GET    | `/downloads/download`| não      | transferir dados da internet           |
+
 
 ## Exemplos de uso
 
-**Cadastro**
+
+**Upload**
+
 
 ```bash
-curl -X POST http://127.0.0.1:5000/users/register \
-  -H 
+curl -X POST http://127.0.0.1:5000/uploads/upload \
+  - POST
+  - body
+  - form-data
+  - key
+  - file - select files e adiciona a pasta que quer fazer Upload
 ```
 
-Resposta (201): `{"message": "Usuário registrado com sucesso"}`
 
-**Login**
+Resposta (201): `{"message": "Upload criado com sucesso"}`
+
+
+**Download**
+
 
 ```bash
-curl -X POST http://127.0.0.1:5000/users/login \
-  
+curl -X POST http://127.0.0.1:5000/downloads/download \
+- GET
+ 
 ```
 
-Resposta (200): `{"access_token": "<token>"}`
+
+Resposta (200): `{"message": "Download realizado com sucesso"}`
+
+
+
+
 
 
 
 
 ## Códigos de resposta
+
 
 | Código | Significado                                              |
 |--------|----------------------------------------------------------|
@@ -105,10 +143,12 @@ Resposta (200): `{"access_token": "<token>"}`
 | 400    | Dados obrigatórios ausentes ou usuário já existente      |
 
 
+
+
 ## Banco de dados
 
-**uploads**: `id`, `filename` (único), `filepath` 
+
+**uploads**: `id`, `filename` (único), `filepath`
+
 
 ** download**: `filename`
-
-
