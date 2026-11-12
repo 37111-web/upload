@@ -68,10 +68,10 @@ O projeto segue uma divisão em camadas: **routes → controllers → models →
    ```
 
 
-   A API ficará disponível em `http://127.0.0.1:5000`. As tabelas são criadas automaticamente na primeira execução.
+   A API ficará disponível em `https://upload-jv76.onrender.com`. As tabelas são criadas automaticamente na primeira execução.
 
 
-   ```
+   
 
 
 ## Endpoints
@@ -102,7 +102,7 @@ O projeto segue uma divisão em camadas: **routes → controllers → models →
 
 
 ```bash
-curl -X POST http://127.0.0.1:5000/uploads/upload \
+curl -X POST https://upload-jv76.onrender.com/uploads/upload \
   - POST
   - body
   - form-data
@@ -118,7 +118,7 @@ Resposta (201): `{"message": "Upload criado com sucesso"}`
 
 
 ```bash
-curl -X POST http://127.0.0.1:5000/downloads/download \
+curl -X POST https://upload-jv76.onrender.com/downloads/download \
 - GET
  
 ```
